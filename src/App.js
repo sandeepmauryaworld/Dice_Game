@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import "./App.css";
+import StartGame from "./components/StartGame";
+import { useState } from "react";
+import GamePlay from "./components/GamePlay";
+
+const Button = styled.button`
+  background-color: black;
+  color: white;
+  padding: 10px;
+`;
 
 function App() {
+  const [isGameStarted, setGameStarted] = useState(true);
+
+  const toggleGamePlay = () => {
+    setGameStarted((prev) => !prev);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>{isGameStarted ? <GamePlay /> : <StartGame toggle={toggleGamePlay} />}</>
   );
 }
 
